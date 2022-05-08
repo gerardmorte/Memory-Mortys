@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-choose-level',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChooseLevelComponent implements OnInit {
 
-  chosenLevel: number = 0;
+  @Output() sendChosenLevel = new EventEmitter<number>();
 
   constructor() { }
 
@@ -15,7 +15,7 @@ export class ChooseLevelComponent implements OnInit {
   }
 
   setLevel(level: number) {
-    this.chosenLevel = level;
+    this.sendChosenLevel.emit(level);
   }
 
 }

@@ -1,3 +1,3 @@
 <h1>Memory Mortys</h1>
 
-<app-choose-level *ngIf="showChooseLevel"></app-choose-level>
+<app-choose-level (sendChosenLevel) = "getLevel($event)" *ngIf="showChooseLevel"></app-choose-level>

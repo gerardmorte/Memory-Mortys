@@ -8,5 +8,12 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Memory-Mortys';
 
+  chosenLevel: number = 0;
+
   showChooseLevel: boolean = true;
+
+  getLevel(e: number){
+    this.chosenLevel = e;
+    console.log(this.chosenLevel);
+  }
 }
