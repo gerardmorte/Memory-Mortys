@@ -1,4 +1,7 @@
 <div id="info-game">
     <p id="intentos">Intentos: {{getIntentos}}</p>
     <p id="pRestantes">Parejas restantes: {{getParejasOk}}/{{getArrayLength}}</p>
+    <p *ngIf="getParejasOk < getArrayLength">PLAY!</p>
+    <p *ngIf="getParejasOk == getArrayLength">WIN!</p>
+    <!-- AFEGIR UN ALTRE P QUE QUAN SECONDS = 0 MOSTRA LOSE! -->
 </div>
