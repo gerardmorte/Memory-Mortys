@@ -16,4 +16,8 @@ export class AppComponent {
     this.chosenLevel = e;
     this.showChooseLevel = false;
   }
+
+  getShowChooseLevel(e: boolean){
+    this.showChooseLevel = e;
+  }
 }

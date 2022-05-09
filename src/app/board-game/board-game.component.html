@@ -1,16 +1,14 @@
+<button (click)="setShowChooseLevel()">VOLVER</button>
 
-<button>VOLVER</button>
-
-  <div id="board-game">
-    <div
-      #cards
-      class="card {{ option.imagen }}"
-      id="{{ option.id }}"
-      (click)="addRotateCard(option.id)"
-      *ngFor="let option of doblarArray"
-    >
-      <div class="front"><img src="assets/img/front.png" alt="" /></div>
-      <div class="back"><img src="{{ option.imagen }}" alt="" /></div>
-    </div>
+<div #boardGame id="board-game">
+  <div
+    #card
+    class="card {{ option.imagen }}"
+    id="{{ option.id }}"
+    (click)="addRotateCard(option.id)"
+    *ngFor="let option of doblarArray"
+  >
+    <div class="front"><img src="assets/img/front.png" alt="" /></div>
+    <div class="back"><img src="{{ option.imagen }}" alt="" /></div>
   </div>
-
+</div>

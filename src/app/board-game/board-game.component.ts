@@ -1,4 +1,13 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  ElementRef,
+  Output,
+  EventEmitter,
+  /*Renderer2,*/
+} from '@angular/core';
 
 @Component({
   selector: 'app-board-game',
@@ -7,8 +16,10 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 })
 export class BoardGameComponent implements OnInit {
   @ViewChild('card') card: ElementRef;
+  //@ViewChild('boardGame') boardGame: ElementRef;
 
   @Input() getChosenLevel: number = 0;
+  @Output() sendShowChooseLevel = new EventEmitter<boolean>();
 
   firstCard: any;
   firstCardId: string = '';
@@ -43,7 +54,7 @@ export class BoardGameComponent implements OnInit {
     { imagen: 'assets/img/morty21.png', pos: '21', id: '21' },
   ];
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef /*private renderer: Renderer2*/) {}
 
   ngOnInit(): void {
     if (this.getChosenLevel == 15) {
@@ -68,6 +79,10 @@ export class BoardGameComponent implements OnInit {
     this.fisherYatesShuffle(this.doblarArray);
   }
 
+  setShowChooseLevel() {
+    this.sendShowChooseLevel.emit(true);
+  }
+
   fisherYatesShuffle(arr: any) {
     for (var i = arr.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1)); //random index
@@ -75,9 +90,9 @@ export class BoardGameComponent implements OnInit {
     }
   }
 
-  getId(id: any) {
-    console.log(document.getElementById(id)?.classList);
-  }
+  // getId(id: any) {
+  //   console.log(document.getElementById(id)?.classList);
+  // }
 
   addRotateCard(id: any) {
     const element = document.getElementById(id)!;
