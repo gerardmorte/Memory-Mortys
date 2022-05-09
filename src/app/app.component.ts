@@ -14,6 +14,6 @@ export class AppComponent {
 
   getLevel(e: number){
     this.chosenLevel = e;
-    console.log(this.chosenLevel);
+    this.showChooseLevel = false;
   }
 }
