@@ -1,4 +1,11 @@
 #chooseLevel{
     display: flex;
+    align-items: center;
     flex-direction: column;
+}
+
+button{
+    width: 200px;
+    height: auto;
+    font-size: 3em;
 }
