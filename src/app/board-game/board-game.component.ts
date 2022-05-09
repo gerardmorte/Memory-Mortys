@@ -185,11 +185,20 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
         (this.secondCardId = '');
     }
 
-    const getCards = //getAllCards?
-      this.elementRef.nativeElement.getElementsByClassName('card');
-    for (let index = 0; index < getCards.length; index++) {
-      //getCards[index].style.pointerEvents = 'auto';
-      this.renderer.setStyle(getCards[index], 'pointerEvents', 'auto');
+    if (this.parejasOk == this.doblarArrayLength /*O VAR BOOLEAN IS TRUE*/) {
+      const getCards = //getAllCards?
+        this.elementRef.nativeElement.getElementsByClassName('card');
+      for (let index = 0; index < getCards.length; index++) {
+        //getCards[index].style.pointerEvents = 'auto';
+        this.renderer.setStyle(getCards[index], 'pointerEvents', 'none');
+      }
+    } else {
+      const getCards = //getAllCards?
+        this.elementRef.nativeElement.getElementsByClassName('card');
+      for (let index = 0; index < getCards.length; index++) {
+        //getCards[index].style.pointerEvents = 'auto';
+        this.renderer.setStyle(getCards[index], 'pointerEvents', 'auto');
+      }
     }
   }
 }
