@@ -104,9 +104,11 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
   }
 
   addRotateCard(id: any) {
-    const element = document.getElementById(id)!;
-    element.children[0].classList.add('rotateFront');
-    element.children[1].classList.add('rotateBack');
+    const element = document.getElementById(id)!; //igual que abaix però getOneCard
+    // element.children[0].classList.add('rotateFront');
+    // element.children[1].classList.add('rotateBack');
+    this.renderer.addClass(element.children[0], 'rotateFront');
+    this.renderer.addClass(element.children[1], 'rotateBack');
 
     if (this.flipCardCount == 0) {
       this.firstCard = element.classList[0];
@@ -117,10 +119,11 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
       this.secondCardId = element.id;
       this.flipCardCount++;
 
-      const getCards =
+      const getCards = //getAllCards?
         this.elementRef.nativeElement.getElementsByClassName('card');
       for (let index = 0; index < getCards.length; index++) {
-        getCards[index].style.pointerEvents = 'none';
+        // getCards[index].style.pointerEvents = 'none';
+        this.renderer.setStyle(getCards[index], 'pointerEvents', 'none');
       }
 
       setTimeout(() => {
@@ -136,18 +139,27 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
       this.firstCard != this.secondCard ||
       this.firstCardId == this.secondCardId /*&& flipCardCount != 2*/
     ) {
-      document
-        .getElementById(this.firstCardId)
-        ?.children[0].classList.remove('rotateFront');
-      document
-        .getElementById(this.firstCardId)
-        ?.children[1].classList.remove('rotateBack');
-      document
-        .getElementById(this.secondCardId)
-        ?.children[0].classList.remove('rotateFront');
-      document
-        .getElementById(this.secondCardId)
-        ?.children[1].classList.remove('rotateBack');
+      // document
+      //   .getElementById(this.firstCardId)
+      //   ?.children[0].classList.remove('rotateFront');
+      // document
+      //   .getElementById(this.firstCardId)
+      //   ?.children[1].classList.remove('rotateBack');
+      // document
+      //   .getElementById(this.secondCardId)
+      //   ?.children[0].classList.remove('rotateFront');
+      // document
+      //   .getElementById(this.secondCardId)
+      //   ?.children[1].classList.remove('rotateBack');
+
+      const element1 = document.getElementById(this.firstCardId)!;
+      this.renderer.removeClass(element1.children[0], 'rotateFront');
+      const element2 = document.getElementById(this.firstCardId)!;
+      this.renderer.removeClass(element2.children[1], 'rotateBack');
+      const element3 = document.getElementById(this.secondCardId)!;
+      this.renderer.removeClass(element3.children[0], 'rotateFront');
+      const element4 = document.getElementById(this.secondCardId)!;
+      this.renderer.removeClass(element4.children[1], 'rotateBack');
 
       //SUMAR INTENTOS
       this.intentos++;
@@ -167,10 +179,11 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
         (this.secondCardId = '');
     }
 
-    const getCards =
+    const getCards = //getAllCards?
       this.elementRef.nativeElement.getElementsByClassName('card');
     for (let index = 0; index < getCards.length; index++) {
-      getCards[index].style.pointerEvents = 'auto';
+      //getCards[index].style.pointerEvents = 'auto';
+      this.renderer.setStyle(getCards[index], 'pointerEvents', 'auto');
     }
   }
 }
