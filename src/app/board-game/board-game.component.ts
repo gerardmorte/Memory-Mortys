@@ -27,9 +27,10 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
   secondCard: any;
   secondCardId: string = '';
   flipCardCount: number = 0;
-  intentos: number = 0;
-  parejasOk: number = 0;
+  intentos: number = 5;
+  parejasOk: number = 2;
   doblarArray: any = [];
+  doblarArrayLength: number = 0;
 
   arrayImagenes = [
     { imagen: 'assets/img/morty1.png', pos: '1', id: '1' },
@@ -70,6 +71,8 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
         id: String(Number(newArray[index].id) * 100),
       });
     }
+
+    this.doblarArrayLength = this.doblarArray.length / 2;
 
     this.fisherYatesShuffle(this.doblarArray);
   }
