@@ -5,6 +5,7 @@
   [getParejasOk]="parejasOk"
   [getArrayLength]="doblarArrayLength"
   [getFirstMove]="firstMove"
+  (sendSeconds) = "getSeconds($event)"
 ></app-info-game>
 
 <div #boardGame id="board-game">

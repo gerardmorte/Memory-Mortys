@@ -8,6 +8,7 @@ import {
   EventEmitter,
   Renderer2,
   AfterViewInit,
+  OnChanges,
 } from '@angular/core';
 
 @Component({
@@ -32,6 +33,7 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
   parejasOk: number = 0;
   doblarArray: any = [];
   doblarArrayLength: number = 0;
+  seconds: boolean = false;
 
   arrayImagenes = [
     { imagen: 'assets/img/morty1.png', pos: '1', id: '1' },
@@ -100,6 +102,10 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
     this.sendShowChooseLevel.emit(true);
   }
 
+  getSeconds(e: any) {
+    this.seconds = e;
+  }
+
   fisherYatesShuffle(arr: any) {
     for (var i = arr.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1)); //random index
@@ -108,34 +114,39 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
   }
 
   addRotateCard(id: any) {
-    const element = document.getElementById(id)!; //igual que abaix però getOneCard
-    this.renderer.addClass(element.children[0], 'rotateFront');
-    this.renderer.addClass(element.children[1], 'rotateBack');
+    if (!this.seconds) {
+      const element = document.getElementById(id)!; //igual que abaix però getOneCard
+      this.renderer.addClass(element.children[0], 'rotateFront');
+      this.renderer.addClass(element.children[1], 'rotateBack');
+      this.renderer.setStyle(element, 'pointerEvents', 'none');
 
-    if(!this.firstMove){
-      this.firstMove = true;
-    }
+      console.log(this.seconds);
 
-    if (this.flipCardCount == 0) {
-      this.firstCard = element.classList[0];
-      this.firstCardId = element.id;
-      this.flipCardCount++;
-    } else if (this.flipCardCount == 1) {
-      this.secondCard = element.classList[0];
-      this.secondCardId = element.id;
-      this.flipCardCount++;
-
-      const getCards = //getAllCards?
-        this.elementRef.nativeElement.getElementsByClassName('card');
-      for (let index = 0; index < getCards.length; index++) {
-        this.renderer.setStyle(getCards[index], 'pointerEvents', 'none');
+      if (!this.firstMove) {
+        this.firstMove = true;
       }
 
-      setTimeout(() => {
-        this.checkMatch(/*identificador*/);
-      }, 1000);
-    } else {
-      this.flipCardCount = 0;
+      if (this.flipCardCount == 0) {
+        this.firstCard = element.classList[0];
+        this.firstCardId = element.id;
+        this.flipCardCount++;
+      } else if (this.flipCardCount == 1) {
+        this.secondCard = element.classList[0];
+        this.secondCardId = element.id;
+        this.flipCardCount++;
+
+        const getCards = //getAllCards?
+          this.elementRef.nativeElement.getElementsByClassName('card');
+        for (let index = 0; index < getCards.length; index++) {
+          this.renderer.setStyle(getCards[index], 'pointerEvents', 'none');
+        }
+
+        setTimeout(() => {
+          this.checkMatch(/*identificador*/);
+        }, 1000);
+      } else {
+        this.flipCardCount = 0;
+      }
     }
   }
 

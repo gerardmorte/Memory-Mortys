@@ -4,6 +4,7 @@ import {
   Input,
   OnChanges,
   OnInit,
+  Output,
 } from '@angular/core';
 
 @Component({
@@ -16,6 +17,7 @@ export class InfoGameComponent implements OnChanges {
   @Input() getIntentos: number = 0;
   @Input() getParejasOk: number = 0;
   @Input() getArrayLength: number = 0;
+  @Output() sendSeconds = new EventEmitter<boolean>();
 
   seconds: number = 59;
   showSeconds: string = '01:00';
@@ -24,9 +26,15 @@ export class InfoGameComponent implements OnChanges {
 
   ngOnChanges() {
     if (this.getFirstMove == true) {
+      this.getFirstMove = false;
+
       const temporizador = setInterval(() => {
-        if (this.seconds == -1) {
+        if (this.getParejasOk == this.getArrayLength) {
+          this.showSeconds = 'WIN!';
+        } else if (this.seconds == -1) {
           clearInterval(temporizador);
+          this.sendSeconds.emit(true);
+          this.showSeconds = 'LOSE!';
         } else if (this.seconds < 10) {
           this.showSeconds = '00:0' + this.seconds--;
         } else {
