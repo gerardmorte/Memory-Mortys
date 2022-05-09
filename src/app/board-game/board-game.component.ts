@@ -27,8 +27,8 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
   secondCard: any;
   secondCardId: string = '';
   flipCardCount: number = 0;
-  intentos: number = 5;
-  parejasOk: number = 2;
+  intentos: number = 0;
+  parejasOk: number = 0;
   doblarArray: any = [];
   doblarArrayLength: number = 0;
 
@@ -169,10 +169,13 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
       //document.getElementById("intentos").innerHTML = "Intentos: " + intentos;
     }
 
-    //  if(firstCard == secondCard && firstCardId != secondCardId){
-    //      parejasOk++;
-    //      document.getElementById("pRestantes").innerHTML = "Parejas restantes " + parejasOk + "/8";
-    //  }
+    if (
+      this.firstCard == this.secondCard &&
+      this.firstCardId != this.secondCardId
+    ) {
+      this.parejasOk++;
+      //document.getElementById("pRestantes").innerHTML = "Parejas restantes " + parejasOk + "/8";
+    }
 
     if (this.flipCardCount == 2) {
       this.flipCardCount = 0;
