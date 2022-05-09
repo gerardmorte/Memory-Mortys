@@ -55,14 +55,6 @@ img {
   transform: perspective(500px) rotateY(180deg);
 }
 
-/* .card:hover .front {
-  transform: perspective(500px) rotateY(180deg);
-}
-
-.card:hover .back {
-  transform: perspective(500px) rotateY(360deg);
-} */
-
 .card .rotateFront{
     transform: perspective(500px) rotateY(180deg);
 }

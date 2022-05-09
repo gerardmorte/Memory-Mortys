@@ -46,6 +46,12 @@ export class BoardGameComponent implements OnInit {
   constructor(private elementRef: ElementRef) {}
 
   ngOnInit(): void {
+    if (this.getChosenLevel == 15) {
+      const getBoardGame = document.getElementById('board-game')!;
+      getBoardGame.style.gridTemplateColumns = 'auto auto auto auto auto';
+      getBoardGame.style.gridTemplateRows = 'auto auto auto auto auto auto';
+    }
+
     this.fisherYatesShuffle(this.arrayImagenes);
 
     let newArray = this.arrayImagenes.slice(0, this.getChosenLevel);
@@ -60,8 +66,6 @@ export class BoardGameComponent implements OnInit {
     }
 
     this.fisherYatesShuffle(this.doblarArray);
-
-    console.log(this.doblarArray);
   }
 
   fisherYatesShuffle(arr: any) {
@@ -88,17 +92,13 @@ export class BoardGameComponent implements OnInit {
       this.secondCard = element.classList[0];
       this.secondCardId = element.id;
       this.flipCardCount++;
-      //PROVA
-      // const getCards = document.getElementsByClassName('card');
-      // for (let index = 0; index < getCards.length; index++) {
-      //   getCards[index].style.pointerEvents = 'auto';
-      // }
-      //NO ESTA FUNCIONANT!
-      const getCards = this.elementRef.nativeElement.getElementsByClassName('card');
+
+      const getCards =
+        this.elementRef.nativeElement.getElementsByClassName('card');
       for (let index = 0; index < getCards.length; index++) {
         getCards[index].style.pointerEvents = 'none';
       }
-      /////////////////////
+
       setTimeout(() => {
         this.checkMatch(/*identificador*/);
       }, 1000);
@@ -107,9 +107,7 @@ export class BoardGameComponent implements OnInit {
     }
   }
 
-  checkMatch(/*identificador*/) {
-    // const element = document.getElementById(identificador);
-
+  checkMatch() {
     if (
       this.firstCard != this.secondCard ||
       this.firstCardId == this.secondCardId /*&& flipCardCount != 2*/
@@ -145,7 +143,8 @@ export class BoardGameComponent implements OnInit {
         (this.secondCardId = '');
     }
 
-    const getCards = this.elementRef.nativeElement.getElementsByClassName('card');
+    const getCards =
+      this.elementRef.nativeElement.getElementsByClassName('card');
     for (let index = 0; index < getCards.length; index++) {
       getCards[index].style.pointerEvents = 'auto';
     }
