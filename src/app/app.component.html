@@ -1,5 +1,13 @@
-<h1>Memory Mortys</h1>
+<header><h1>Memory Mortys</h1></header>
 
-<app-choose-level (sendChosenLevel) = "getLevel($event)" *ngIf="showChooseLevel"></app-choose-level>
+<app-choose-level
+  id="chooseLevelSelector"
+  (sendChosenLevel)="getLevel($event)"
+  *ngIf="showChooseLevel"
+></app-choose-level>
 
-<app-board-game [getChosenLevel] = "chosenLevel" *ngIf="!showChooseLevel"></app-board-game>
+<app-board-game
+  id="boardGameSelector"
+  [getChosenLevel]="chosenLevel"
+  *ngIf="!showChooseLevel"
+></app-board-game>
