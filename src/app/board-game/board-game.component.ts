@@ -29,13 +29,13 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
   secondCard: any;
   secondCardId: string = '';
   flipCardCount: number = 0;
-  intentos: number = 0;
-  parejasOk: number = 0;
-  doblarArray: any = [];
-  doblarArrayLength: number = 0;
-  seconds: boolean = false;
+  attempts: number = 0;
+  isMatched: number = 0;
+  newArray: any = [];
+  newArrayLength: number = 0;
+  loseGame: boolean = false;
 
-  arrayImagenes = [
+  imgArray = [
     { imagen: 'assets/img/morty1.png', pos: '1', id: '1' },
     { imagen: 'assets/img/morty2.png', pos: '2', id: '2' },
     { imagen: 'assets/img/morty3.png', pos: '3', id: '3' },
@@ -62,22 +62,20 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit(): void {
-    this.fisherYatesShuffle(this.arrayImagenes);
+    this.fisherYatesShuffle(this.imgArray);
 
-    let newArray = this.arrayImagenes.slice(0, this.getChosenLevel);
-
-    for (let index = 0; index < newArray.length; index++) {
-      this.doblarArray.push(newArray[index]);
-      this.doblarArray.push({
-        imagen: newArray[index].imagen,
-        pos: newArray[index].pos,
-        id: String(Number(newArray[index].id) * 100),
+    let arraySlice = this.imgArray.slice(0, this.getChosenLevel);
+    for (let index = 0; index < arraySlice.length; index++) {
+      this.newArray.push(arraySlice[index]);
+      this.newArray.push({
+        imagen: arraySlice[index].imagen,
+        pos: arraySlice[index].pos,
+        id: String(Number(arraySlice[index].id) * 100),
       });
     }
 
-    this.doblarArrayLength = this.doblarArray.length / 2;
-
-    this.fisherYatesShuffle(this.doblarArray);
+    this.newArrayLength = this.newArray.length / 2;
+    this.fisherYatesShuffle(this.newArray);
   }
 
   ngAfterViewInit(): void {
@@ -102,8 +100,8 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
     this.sendShowChooseLevel.emit(true);
   }
 
-  getSeconds(e: any) {
-    this.seconds = e;
+  getLoseGame(e: any) {
+    this.loseGame = e;
   }
 
   fisherYatesShuffle(arr: any) {
@@ -114,35 +112,31 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
   }
 
   addRotateCard(id: any) {
-    if (!this.seconds) {
-      const element = document.getElementById(id)!; //igual que abaix però getOneCard
-      this.renderer.addClass(element.children[0], 'rotateFront');
-      this.renderer.addClass(element.children[1], 'rotateBack');
-      this.renderer.setStyle(element, 'pointerEvents', 'none');
-
-      console.log(this.seconds);
+    if (!this.loseGame) {
+      const getCard = document.getElementById(id)!;
+      this.renderer.addClass(getCard.children[0], 'rotateFront');
+      this.renderer.addClass(getCard.children[1], 'rotateBack');
+      this.renderer.setStyle(getCard, 'pointerEvents', 'none');
 
       if (!this.firstMove) {
         this.firstMove = true;
       }
 
       if (this.flipCardCount == 0) {
-        this.firstCard = element.classList[0];
-        this.firstCardId = element.id;
+        this.firstCard = getCard.classList[0];
+        this.firstCardId = getCard.id;
         this.flipCardCount++;
       } else if (this.flipCardCount == 1) {
-        this.secondCard = element.classList[0];
-        this.secondCardId = element.id;
+        this.secondCard = getCard.classList[0];
+        this.secondCardId = getCard.id;
         this.flipCardCount++;
-
-        const getCards = //getAllCards?
+        const getCards =
           this.elementRef.nativeElement.getElementsByClassName('card');
         for (let index = 0; index < getCards.length; index++) {
           this.renderer.setStyle(getCards[index], 'pointerEvents', 'none');
         }
-
         setTimeout(() => {
-          this.checkMatch(/*identificador*/);
+          this.checkMatch();
         }, 1000);
       } else {
         this.flipCardCount = 0;
@@ -151,26 +145,27 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
   }
 
   checkMatch() {
+    const getFirstCard = document.getElementById(this.firstCardId)!;
+    const getSecondCard = document.getElementById(this.secondCardId)!;
+
     if (
       this.firstCard != this.secondCard ||
       this.firstCardId == this.secondCardId
     ) {
-      const element1 = document.getElementById(this.firstCardId)!;
-      this.renderer.removeClass(element1.children[0], 'rotateFront');
-      const element2 = document.getElementById(this.firstCardId)!;
-      this.renderer.removeClass(element2.children[1], 'rotateBack');
-      const element3 = document.getElementById(this.secondCardId)!;
-      this.renderer.removeClass(element3.children[0], 'rotateFront');
-      const element4 = document.getElementById(this.secondCardId)!;
-      this.renderer.removeClass(element4.children[1], 'rotateBack');
-      this.intentos++;
+      this.renderer.removeClass(getFirstCard.children[0], 'rotateFront');
+      this.renderer.removeClass(getFirstCard.children[1], 'rotateBack');
+      this.renderer.removeClass(getSecondCard.children[0], 'rotateFront');
+      this.renderer.removeClass(getSecondCard.children[1], 'rotateBack');
+      this.attempts++;
     }
 
     if (
       this.firstCard == this.secondCard &&
       this.firstCardId != this.secondCardId
     ) {
-      this.parejasOk++;
+      this.isMatched++;
+      this.renderer.addClass(getFirstCard, 'match');
+      this.renderer.addClass(getSecondCard, 'match');
     }
 
     if (this.flipCardCount == 2) {
@@ -181,16 +176,12 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
         (this.secondCardId = '');
     }
 
-    if (this.parejasOk == this.doblarArrayLength) {
-      const getCards = //getAllCards?
-        this.elementRef.nativeElement.getElementsByClassName('card');
-      for (let index = 0; index < getCards.length; index++) {
+    const getCards =
+      this.elementRef.nativeElement.getElementsByClassName('card');
+    for (let index = 0; index < getCards.length; index++) {
+      if (this.isMatched == this.newArrayLength) {
         this.renderer.setStyle(getCards[index], 'pointerEvents', 'none');
-      }
-    } else {
-      const getCards = //getAllCards?
-        this.elementRef.nativeElement.getElementsByClassName('card');
-      for (let index = 0; index < getCards.length; index++) {
+      } else if (!getCards[index].classList.contains('match')) {
         this.renderer.setStyle(getCards[index], 'pointerEvents', 'auto');
       }
     }

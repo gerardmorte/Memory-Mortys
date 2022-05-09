@@ -1,11 +1,11 @@
 <button (click)="setShowChooseLevel()">VOLVER</button>
 
 <app-info-game
-  [getIntentos]="intentos"
-  [getParejasOk]="parejasOk"
-  [getArrayLength]="doblarArrayLength"
+  [getAttempts]="attempts"
+  [getIsMatched]="isMatched"
+  [getArrayLength]="newArrayLength"
   [getFirstMove]="firstMove"
-  (sendSeconds) = "getSeconds($event)"
+  (sendLoseGame) = "getLoseGame($event)"
 ></app-info-game>
 
 <div #boardGame id="board-game">
@@ -14,7 +14,7 @@
     class="card {{ option.imagen }}"
     id="{{ option.id }}"
     (click)="addRotateCard(option.id)"
-    *ngFor="let option of doblarArray"
+    *ngFor="let option of newArray"
   >
     <div class="front"><img src="assets/img/front.png" alt="" /></div>
     <div class="back"><img src="{{ option.imagen }}" alt="" /></div>

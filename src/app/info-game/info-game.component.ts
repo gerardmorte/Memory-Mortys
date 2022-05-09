@@ -3,7 +3,6 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnInit,
   Output,
 } from '@angular/core';
 
@@ -14,13 +13,13 @@ import {
 })
 export class InfoGameComponent implements OnChanges {
   @Input() getFirstMove!: boolean;
-  @Input() getIntentos: number = 0;
-  @Input() getParejasOk: number = 0;
+  @Input() getAttempts: number = 0;
+  @Input() getIsMatched: number = 0;
   @Input() getArrayLength: number = 0;
-  @Output() sendSeconds = new EventEmitter<boolean>();
+  @Output() sendLoseGame = new EventEmitter<boolean>();
 
   seconds: number = 59;
-  showSeconds: string = '01:00';
+  showSeconds: string = 'PLAY! 01:00';
 
   constructor() {}
 
@@ -29,16 +28,27 @@ export class InfoGameComponent implements OnChanges {
       this.getFirstMove = false;
 
       const temporizador = setInterval(() => {
-        if (this.getParejasOk == this.getArrayLength) {
-          this.showSeconds = 'WIN!';
-        } else if (this.seconds == -1) {
+        if (this.getIsMatched == this.getArrayLength) {
+          this.seconds++;
           clearInterval(temporizador);
-          this.sendSeconds.emit(true);
-          this.showSeconds = 'LOSE!';
+          if (this.seconds < 10) {
+            this.showSeconds = 'WIN! 00:0' + this.seconds;
+          } else {
+            this.showSeconds = 'WIN! 00:' + this.seconds;
+          }
+        } else if (this.seconds == -1) {
+          this.seconds++;
+          clearInterval(temporizador);
+          this.sendLoseGame.emit(true);
+          if (this.seconds < 10) {
+            this.showSeconds = 'LOSE! 00:0' + this.seconds;
+          } else {
+            this.showSeconds = 'LOSE! 00:' + this.seconds;
+          }
         } else if (this.seconds < 10) {
-          this.showSeconds = '00:0' + this.seconds--;
+          this.showSeconds = 'PLAY! 00:0' + this.seconds--;
         } else {
-          this.showSeconds = '00:' + this.seconds--;
+          this.showSeconds = 'PLAY! 00:' + this.seconds--;
         }
       }, 1000);
     }
