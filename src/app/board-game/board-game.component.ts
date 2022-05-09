@@ -6,7 +6,8 @@ import {
   ElementRef,
   Output,
   EventEmitter,
-  /*Renderer2,*/
+  Renderer2,
+  AfterViewInit,
 } from '@angular/core';
 
 @Component({
@@ -14,9 +15,9 @@ import {
   templateUrl: './board-game.component.html',
   styleUrls: ['./board-game.component.css'],
 })
-export class BoardGameComponent implements OnInit {
-  @ViewChild('card') card: ElementRef;
-  //@ViewChild('boardGame') boardGame: ElementRef;
+export class BoardGameComponent implements OnInit, AfterViewInit {
+  @ViewChild('card') card!: ElementRef;
+  @ViewChild('boardGame') boardGame!: ElementRef;
 
   @Input() getChosenLevel: number = 0;
   @Output() sendShowChooseLevel = new EventEmitter<boolean>();
@@ -54,15 +55,9 @@ export class BoardGameComponent implements OnInit {
     { imagen: 'assets/img/morty21.png', pos: '21', id: '21' },
   ];
 
-  constructor(private elementRef: ElementRef /*private renderer: Renderer2*/) {}
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit(): void {
-    if (this.getChosenLevel == 15) {
-      const getBoardGame = document.getElementById('board-game')!;
-      getBoardGame.style.gridTemplateColumns = 'auto auto auto auto auto';
-      getBoardGame.style.gridTemplateRows = 'auto auto auto auto auto auto';
-    }
-
     this.fisherYatesShuffle(this.arrayImagenes);
 
     let newArray = this.arrayImagenes.slice(0, this.getChosenLevel);
@@ -79,6 +74,24 @@ export class BoardGameComponent implements OnInit {
     this.fisherYatesShuffle(this.doblarArray);
   }
 
+  ngAfterViewInit(): void {
+    if (this.getChosenLevel == 15) {
+      const getBoardGame = document.getElementById('board-game')!;
+      getBoardGame.style.gridTemplateColumns = 'auto auto auto auto auto';
+      getBoardGame.style.gridTemplateRows = 'auto auto auto auto auto auto';
+      this.renderer.setStyle(
+        this.boardGame.nativeElement,
+        'gridTemplateColumns',
+        'auto auto auto auto auto'
+      );
+      this.renderer.setStyle(
+        this.boardGame.nativeElement,
+        'gridTemplateRows',
+        'auto auto auto auto auto auto'
+      );
+    }
+  }
+
   setShowChooseLevel() {
     this.sendShowChooseLevel.emit(true);
   }
@@ -89,10 +102,6 @@ export class BoardGameComponent implements OnInit {
       [arr[i], arr[j]] = [arr[j], arr[i]]; // swap
     }
   }
-
-  // getId(id: any) {
-  //   console.log(document.getElementById(id)?.classList);
-  // }
 
   addRotateCard(id: any) {
     const element = document.getElementById(id)!;
