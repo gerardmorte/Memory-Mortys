@@ -1,7 +1,8 @@
 <div id="info-game">
     <p id="intentos">Intentos: {{getIntentos}}</p>
     <p id="pRestantes">Parejas restantes: {{getParejasOk}}/{{getArrayLength}}</p>
+    <p>{{showSeconds}}</p>
     <!-- <p *ngIf="getParejasOk < getArrayLength">PLAY!</p> -->
     <!-- <p *ngIf="getParejasOk == getArrayLength">WIN!</p> -->
-    <app-count-down [getIntentos]="getIntentos" [getParejasOk]="getParejasOk" [getArrayLength]="getArrayLength"></app-count-down>
+    <!-- <app-count-down [getIntentos]="getIntentos" [getParejasOk]="getParejasOk" [getArrayLength]="getArrayLength"></app-count-down> -->
 </div>
