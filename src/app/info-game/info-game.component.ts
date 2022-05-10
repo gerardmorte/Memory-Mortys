@@ -37,23 +37,21 @@ export class InfoGameComponent implements OnChanges {
           clearInterval(temporizador);
           document.getElementById('showTime')!.style.backgroundColor =
             'lawngreen';
+          document.getElementById('showTime')!.style.textAlign = 'center';
           document.getElementById('attempts')!.style.backgroundColor =
             'lawngreen';
           document.getElementById('matched')!.style.backgroundColor =
             'lawngreen';
-          if (this.seconds < 10) {
-            this.showSeconds = 'WINNER!';
-          }
+          this.showSeconds = 'WINNER!';
         } else if (this.seconds == -1) {
           this.seconds++;
           clearInterval(temporizador);
           document.getElementById('showTime')!.style.backgroundColor = 'red';
+          document.getElementById('showTime')!.style.textAlign = 'center';
           document.getElementById('attempts')!.style.backgroundColor = 'red';
           document.getElementById('matched')!.style.backgroundColor = 'red';
           this.sendLoseGame.emit(true);
-          if (this.seconds < 10) {
-            this.showSeconds = 'LOSER!';
-          }
+          this.showSeconds = 'LOSER!';
         } else if (this.seconds < 10) {
           this.showSeconds = 'TIME: 00:0' + this.seconds--;
         } else {

@@ -33,11 +33,24 @@ p{
 #attempts{
   /* width: max-content; */
   text-align: left;
-  width: 150px;
+  width: 120px;
+}
+
+#matched{
+  text-align: left;
+  width: 120px;
+}
+
+#showTime{
+  text-align: left;
+  width: 110px;
 }
 
 @media screen and (max-width: 360px) {
   #prueba{
     flex-direction: column;
+  }
+  #showTime{
+    width: auto;
   }
 }
