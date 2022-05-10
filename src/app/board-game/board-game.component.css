@@ -1,28 +1,24 @@
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: sans-serif;
+#container{
+  margin-top: 50px;
 }
 
-body {
-  background: #112031;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-} */
+#btn-back{
+  font-family: 'rmfont';
+  font-size: 1em;
+  cursor: pointer;
+  color: black;
+  background-color: #00B2C8;
+  border: 3px solid black;
+  border-radius: 25px;
+  box-shadow: 0 0 2.5px #00FF33,0 0 2.5px #00FF33, 0 0 5px #04F466, 0 0 5px #04F466, 0 0 5px #04F466;
+}
 
 button {
   width: 100px;
   height: auto;
   font-size: 1em;
-  background-color: yellow;
-  border: 2px solid white;
-  border-radius: 10px;
-  color: black;
   margin-left: 2px;
+  margin-right: 5px;
 }
 
 #bar-info {
@@ -37,6 +33,8 @@ button {
   grid-template-columns: auto auto auto auto;
   align-items: center;
   justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
   /* max-width: 100vh; */
 }
 
@@ -44,7 +42,8 @@ button {
   position: relative;
   width: 80px;
   height: 80px;
-  border: 1px solid greenyellow;
+  border: 1px solid #00FF33;
+  box-shadow: 0 0 2.5px #00FF33,0 0 2.5px #00FF33, 0 0 5px #04F466, 0 0 5px #04F466, 0 0 5px #04F466;
 }
 
 .card div {
@@ -64,12 +63,12 @@ img {
 }
 
 .card .front {
-  background: #288ca0;
+  background-color: #682fc4;
   transform: perspective(500px) rotateY(0deg);
 }
 
 .card .back {
-  background: #682fc4;
+  background: #00B2C8;
   transform: perspective(500px) rotateY(180deg);
 }
 
@@ -85,4 +84,10 @@ img {
   #board-game {
     grid-template-columns: auto auto auto auto;
   }
+
+  #btn-back{
+    font-size: 1em;
+  }
 }
+
+

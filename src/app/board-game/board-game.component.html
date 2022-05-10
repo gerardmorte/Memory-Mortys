@@ -1,23 +1,25 @@
-<div id="bar-info">
-  <app-info-game
-    [getAttempts]="attempts"
-    [getIsMatched]="isMatched"
-    [getArrayLength]="newArrayLength"
-    [getFirstMove]="firstMove"
-    (sendLoseGame)="getLoseGame($event)"
-  ></app-info-game>
-  <button (click)="setShowChooseLevel()">BACK</button>
-</div>
-
-<div #boardGame id="board-game">
-  <div
-    #card
-    class="card {{ option.imagen }}"
-    id="{{ option.id }}"
-    (click)="addRotateCard(option.id)"
-    *ngFor="let option of newArray"
-  >
-    <div class="front"><img src="assets/img/front.png" alt="" /></div>
-    <div class="back"><img src="{{ option.imagen }}" alt="" /></div>
+<div id="container">
+  <div id="bar-info">
+    <app-info-game
+      [getAttempts]="attempts"
+      [getIsMatched]="isMatched"
+      [getArrayLength]="newArrayLength"
+      [getFirstMove]="firstMove"
+      (sendLoseGame)="getLoseGame($event)"
+    ></app-info-game>
+    <button id="btn-back" (click)="setShowChooseLevel()">BACK</button>
+  </div>
+  
+  <div #boardGame id="board-game">
+    <div
+      #card
+      class="card {{ option.imagen }}"
+      id="{{ option.id }}"
+      (click)="addRotateCard(option.id)"
+      *ngFor="let option of newArray"
+    >
+      <div class="front"><img src="assets/img/front.png" alt="" /></div>
+      <div class="back"><img src="{{ option.imagen }}" alt="" /></div>
+    </div>
   </div>
 </div>

@@ -6,4 +6,5 @@ body{
     background-size: cover;
     height: auto;
     width: auto;
+    overflow: hidden;
 }

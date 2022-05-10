@@ -5,18 +5,29 @@
   box-sizing: border-box;
 }
 
+#prueba{
+  display: flex;
+}
+
 #info-game{
   display: flex;
   justify-content: center;
 }
 
 p{
+  font-family: 'rmfont';
   padding: 10px;
-  border: 2px solid white;
+  font-size: 1em;
+  /* border: 2px solid white;
   border-radius: 10px;
   background-color: yellow;
-  color: black;
+  color: black; */
   margin: 2px;
+  color: black;
+  background-color: #00B2C8;
+  border: 3px solid black;
+  border-radius: 25px;
+  box-shadow: 0 0 2.5px #00FF33,0 0 2.5px #00FF33, 0 0 5px #04F466, 0 0 5px #04F466, 0 0 5px #04F466;
 }
 
 #attempts{
@@ -25,3 +36,8 @@ p{
   width: 150px;
 }
 
+@media screen and (max-width: 360px) {
+  #prueba{
+    flex-direction: column;
+  }
+}

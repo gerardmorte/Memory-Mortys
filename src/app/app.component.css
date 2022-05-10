@@ -14,3 +14,50 @@
 h1{
     color: white;
 }
+
+#title{
+    margin-top: 40px;
+    width: 800px;
+    height: auto;
+    display: flex;
+    margin: 0px auto;
+    justify-content: center;
+}
+
+#title img{
+    width: 400px;
+    height: auto;
+}
+
+#title1{
+    margin-right: -35px;
+}
+
+@media screen and (max-width: 360px) {
+    #title img{
+        width: 340px;
+    }
+
+    #title {
+        width: 360px;
+        height: auto;
+        flex-direction: column;
+        margin-top: 40px;
+        /* margin-right: 0px; */
+    }
+
+    #title1{
+        margin-right: 0px;
+    }
+
+    #title2{
+        margin-top: -40px;
+    }
+  }
+
+  @font-face {
+    font-family: "rmfont";
+    src: url('/assets/font/Calligraphr-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-size: normal;
+}
