@@ -1,5 +1,7 @@
-<div id="info-game">
-    <p id="attempts">Intentos: {{getAttempts}}</p>
-    <p id="matched">Parejas restantes: {{getIsMatched}}/{{getArrayLength}}</p>
-    <p>{{showSeconds}}</p>
+<div #infoGame id="info-game">
+  <p id="attempts">ATTEMPTS: {{ getAttempts }}</p>
+  <p id="matched">MATCHED: {{ getIsMatched }}/{{ getArrayLength }}</p>
+</div>
+<div id="info-time">
+  <p #showTime id="showTime">{{ showSeconds }}</p>
 </div>

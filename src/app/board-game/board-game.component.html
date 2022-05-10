@@ -1,12 +1,13 @@
-<button (click)="setShowChooseLevel()">VOLVER</button>
-
-<app-info-game
-  [getAttempts]="attempts"
-  [getIsMatched]="isMatched"
-  [getArrayLength]="newArrayLength"
-  [getFirstMove]="firstMove"
-  (sendLoseGame) = "getLoseGame($event)"
-></app-info-game>
+<div id="bar-info">
+  <app-info-game
+    [getAttempts]="attempts"
+    [getIsMatched]="isMatched"
+    [getArrayLength]="newArrayLength"
+    [getFirstMove]="firstMove"
+    (sendLoseGame)="getLoseGame($event)"
+  ></app-info-game>
+  <button (click)="setShowChooseLevel()">BACK</button>
+</div>
 
 <div #boardGame id="board-game">
   <div

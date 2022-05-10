@@ -14,10 +14,22 @@ body {
   min-height: 100vh;
 } */
 
-button{
-  width: 200px;
+button {
+  width: 100px;
   height: auto;
-  font-size: 3em;
+  font-size: 1em;
+  background-color: yellow;
+  border: 2px solid white;
+  border-radius: 10px;
+  color: black;
+  margin-left: 2px;
+}
+
+#bar-info {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
 
 #board-game {
@@ -30,8 +42,8 @@ button{
 
 .card {
   position: relative;
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   border: 1px solid greenyellow;
 }
 
@@ -48,7 +60,7 @@ button{
 
 img {
   width: auto;
-  height: 80px;
+  height: 70px;
 }
 
 .card .front {
@@ -61,10 +73,16 @@ img {
   transform: perspective(500px) rotateY(180deg);
 }
 
-.card .rotateFront{
-    transform: perspective(500px) rotateY(180deg);
+.card .rotateFront {
+  transform: perspective(500px) rotateY(180deg);
 }
 
-.card .rotateBack{
-    transform: perspective(500px) rotateY(360deg);
+.card .rotateBack {
+  transform: perspective(500px) rotateY(360deg);
+}
+
+@media screen and (max-width: 360px) {
+  #board-game {
+    grid-template-columns: auto auto auto auto;
+  }
 }

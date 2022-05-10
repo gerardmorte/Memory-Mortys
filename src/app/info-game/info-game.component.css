@@ -1,3 +1,27 @@
 * {
   color: white;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
+
+#info-game{
+  display: flex;
+  justify-content: center;
+}
+
+p{
+  padding: 10px;
+  border: 2px solid white;
+  border-radius: 10px;
+  background-color: yellow;
+  color: black;
+  margin: 2px;
+}
+
+#attempts{
+  /* width: max-content; */
+  text-align: left;
+  width: 150px;
+}
+

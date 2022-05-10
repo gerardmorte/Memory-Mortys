@@ -79,19 +79,30 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.getChosenLevel == 15) {
-      const getBoardGame = document.getElementById('board-game')!;
-      getBoardGame.style.gridTemplateColumns = 'auto auto auto auto auto';
-      getBoardGame.style.gridTemplateRows = 'auto auto auto auto auto auto';
+    if (this.getChosenLevel == 12) {
       this.renderer.setStyle(
         this.boardGame.nativeElement,
         'gridTemplateColumns',
-        'auto auto auto auto auto'
+        'auto auto auto auto auto auto'
       );
       this.renderer.setStyle(
         this.boardGame.nativeElement,
         'gridTemplateRows',
+        'auto auto auto auto'
+      );
+    } else if (this.getChosenLevel == 15) {
+      //const getBoardGame = document.getElementById('board-game')!;
+      //getBoardGame.style.gridTemplateColumns = 'auto auto auto auto auto auto';
+      //getBoardGame.style.gridTemplateRows = 'auto auto auto auto auto auto';
+      this.renderer.setStyle(
+        this.boardGame.nativeElement,
+        'gridTemplateColumns',
         'auto auto auto auto auto auto'
+      );
+      this.renderer.setStyle(
+        this.boardGame.nativeElement,
+        'gridTemplateRows',
+        'auto auto auto auto auto'
       );
     }
   }
@@ -164,6 +175,7 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
       this.firstCardId != this.secondCardId
     ) {
       this.isMatched++;
+      this.attempts++;
       this.renderer.addClass(getFirstCard, 'match');
       this.renderer.addClass(getSecondCard, 'match');
     }
