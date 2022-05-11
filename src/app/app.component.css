@@ -1,22 +1,13 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
 }
 
-/* body{
-    text-align: center;
-    background: url(/assets/img/wallpaper.jpg);
-    background-size: cover;
-    height: 100vh;
-    width: 100vw;
+/* #container {
+    margin-top: 100px;
 } */
 
-h1{
-    color: white;
-}
-
-#title{
-    margin-top: 40px;
+#title {
     width: 800px;
     height: auto;
     display: flex;
@@ -24,17 +15,22 @@ h1{
     justify-content: center;
 }
 
-#title img{
+#title img {
     width: 400px;
     height: auto;
 }
 
-#title1{
+#title1 {
     margin-right: -35px;
 }
 
-@media screen and (max-width: 360px) {
-    #title img{
+@media screen and (max-width: 450px) {
+
+    /* #container {
+        margin-top: 0px;
+    } */
+
+    #title img {
         width: 340px;
     }
 
@@ -46,18 +42,19 @@ h1{
         /* margin-right: 0px; */
     }
 
-    #title1{
+    #title1 {
         margin-right: 0px;
     }
 
-    #title2{
+    #title2 {
         margin-top: -40px;
     }
-  }
+}
 
-  @font-face {
+@font-face {
     font-family: "rmfont";
     src: url('/assets/font/PinkChicken-Regular.ttf') format('truetype');
     font-weight: normal;
     font-size: normal;
 }
+

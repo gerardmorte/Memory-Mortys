@@ -8,7 +8,6 @@ import {
   EventEmitter,
   Renderer2,
   AfterViewInit,
-  OnChanges,
 } from '@angular/core';
 
 @Component({
@@ -59,7 +58,7 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
     { imagen: 'assets/img/morty21.png', pos: '21', id: '21' },
   ];
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit(): void {
     this.fisherYatesShuffle(this.imgArray);
@@ -79,36 +78,59 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.getChosenLevel == 12) {
-      this.renderer.setStyle(
-        this.boardGame.nativeElement,
-        'gridTemplateColumns',
-        'auto auto auto auto auto auto'
-      );
-      this.renderer.setStyle(
-        this.boardGame.nativeElement,
-        'gridTemplateRows',
-        'auto auto auto auto'
-      );
-    } else if (this.getChosenLevel == 15) {
-      //const getBoardGame = document.getElementById('board-game')!;
-      //getBoardGame.style.gridTemplateColumns = 'auto auto auto auto auto auto';
-      //getBoardGame.style.gridTemplateRows = 'auto auto auto auto auto auto';
-      this.renderer.setStyle(
-        this.boardGame.nativeElement,
-        'gridTemplateColumns',
-        'auto auto auto auto auto auto'
-      );
-      this.renderer.setStyle(
-        this.boardGame.nativeElement,
-        'gridTemplateRows',
-        'auto auto auto auto auto'
-      );
-    }
-  }
+    if (!window.matchMedia("(max-width: 450px").matches) {
+      if (this.getChosenLevel == 12) {
+        this.renderer.setStyle(
+          this.boardGame.nativeElement,
+          'gridTemplateColumns',
+          'auto auto auto auto auto auto'
+        );
+        this.renderer.setStyle(
+          this.boardGame.nativeElement,
+          'gridTemplateRows',
+          'auto auto auto auto'
+        );
+      } else if (this.getChosenLevel == 15) {
+        this.renderer.setStyle(
+          this.boardGame.nativeElement,
+          'gridTemplateColumns',
+          'auto auto auto auto auto auto'
+        );
+        this.renderer.setStyle(
+          this.boardGame.nativeElement,
+          'gridTemplateRows',
+          'auto auto auto auto auto'
+        );
+      }
+    } else {
+      if (this.getChosenLevel == 12) {
+        this.renderer.setStyle(
+          this.boardGame.nativeElement,
+          'gridTemplateColumns',
+          'auto auto auto auto'
+        );
+        this.renderer.setStyle(
+          this.boardGame.nativeElement,
+          'gridTemplateRows',
+          'auto auto auto auto auto'
+        );
+      } else if (this.getChosenLevel == 15) {
+        this.renderer.setStyle(
+          this.boardGame.nativeElement,
+          'gridTemplateColumns',
+          'auto auto auto auto auto'
+        );
+        this.renderer.setStyle(
+          this.boardGame.nativeElement,
+          'gridTemplateRows',
+          'auto auto auto auto auto auto'
+        );
+      }
 
-  setShowChooseLevel() {
-    this.sendShowChooseLevel.emit(true);
+
+    }
+
+    console.log(window.matchMedia("(max-width: 360px").matches);
   }
 
   getLoseGame(e: any) {

@@ -6,8 +6,8 @@
       [getArrayLength]="newArrayLength"
       [getFirstMove]="firstMove"
       (sendLoseGame)="getLoseGame($event)"
+      [sendShowChooseLevel]="sendShowChooseLevel"
     ></app-info-game>
-    <button id="btn-back" (click)="setShowChooseLevel()">BACK</button>
   </div>
   
   <div #boardGame id="board-game">

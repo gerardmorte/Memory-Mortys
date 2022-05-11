@@ -1,39 +1,11 @@
-#container{
+#container {
   margin-top: 50px;
 }
-
-#btn-back{
-  width: 200px;
-  height: auto;
-  font-family: 'rmfont';
-  font-size: 1em;
-  cursor: pointer;
-  /* color: black;
-  background-color: #00B2C8;
-  border: 3px solid black;
-  border-radius: 25px;
-  box-shadow: 0 0 2.5px #00FF33,0 0 2.5px #00FF33, 0 0 5px #04F466, 0 0 5px #04F466, 0 0 5px #04F466; */
-  color: black;
-  background-color: #00B2C8;
-  border: 3px solid black;
-  border-radius: 25px;
-  box-shadow: 0 0 10px #00FF33,0 0 10px #00FF33, 0 0 20px #04F466, 0 0 20px #04F466, 0 0 20px #04F466;
-  cursor: pointer;
-}
-
-/* button {
-  width: 100px;
-  height: auto;
-  font-size: 1em;
-  margin-left: 2px;
-  margin-right: 5px;
-} */
 
 #bar-info {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
-  margin-top: 30px;
 }
 
 #board-game {
@@ -43,15 +15,16 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 5px;
-  /* max-width: 100vh; */
 }
 
 .card {
   position: relative;
-  width: 80px;
-  height: 80px;
+  /* width: 80px;
+  height: 80px; */
+  width: 140px;
+  height: 140px;
   border: 1px solid #00FF33;
-  box-shadow: 0 0 2.5px #00FF33,0 0 2.5px #00FF33, 0 0 5px #04F466, 0 0 5px #04F466, 0 0 5px #04F466;
+  box-shadow: 0 0 2.5px #00FF33, 0 0 2.5px #00FF33, 0 0 5px #04F466, 0 0 5px #04F466, 0 0 5px #04F466;
 }
 
 .card div {
@@ -67,7 +40,8 @@
 
 img {
   width: auto;
-  height: 70px;
+  /* height: 70px; */
+  height: 130px;
 }
 
 .card .front {
@@ -88,14 +62,27 @@ img {
   transform: perspective(500px) rotateY(360deg);
 }
 
-@media screen and (max-width: 360px) {
-  #board-game {
-    grid-template-columns: auto auto auto auto;
+@media screen and (max-width: 450px) {
+
+  #container {
+    margin-top: 0px;
   }
 
-  #btn-back{
+  .card {
+    width: 65px;
+    height: 65px;
+  }
+
+  img {
+    height: 60px;
+  }
+
+  #bar-info {
+    margin-bottom: 13px;
+  }
+
+  #btn-back {
     font-size: 1em;
+    width: 120px;
   }
 }
-
-
