@@ -1,11 +1,13 @@
 #container {
-  margin-top: 50px;
+  /* margin-top: 50px; */
+  margin-top: 10px;
 }
 
 #bar-info {
   display: flex;
   justify-content: center;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
+  margin-bottom: 10px;
 }
 
 #board-game {
@@ -21,10 +23,13 @@
   position: relative;
   /* width: 80px;
   height: 80px; */
-  width: 140px;
-  height: 140px;
-  border: 1px solid #00FF33;
-  box-shadow: 0 0 2.5px #00FF33, 0 0 2.5px #00FF33, 0 0 5px #04F466, 0 0 5px #04F466, 0 0 5px #04F466;
+  /* width: 140px;
+  height: 140px; */
+  width: 85px;
+  height: 85px;
+  border: 1px solid #00ff33;
+  box-shadow: 0 0 2.5px #00ff33, 0 0 2.5px #00ff33, 0 0 5px #04f466,
+    0 0 5px #04f466, 0 0 5px #04f466;
 }
 
 .card div {
@@ -41,7 +46,8 @@
 img {
   width: auto;
   /* height: 70px; */
-  height: 130px;
+  /* height: 130px; */
+  height: 80px;
 }
 
 .card .front {
@@ -50,7 +56,7 @@ img {
 }
 
 .card .back {
-  background: #00B2C8;
+  background: #00b2c8;
   transform: perspective(500px) rotateY(180deg);
 }
 
@@ -63,7 +69,6 @@ img {
 }
 
 @media screen and (max-width: 450px) {
-
   #container {
     margin-top: 0px;
   }
