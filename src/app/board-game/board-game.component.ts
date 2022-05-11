@@ -8,6 +8,8 @@ import {
   EventEmitter,
   Renderer2,
   AfterViewInit,
+  OnChanges,
+  DoCheck,
 } from '@angular/core';
 
 @Component({
@@ -15,7 +17,7 @@ import {
   templateUrl: './board-game.component.html',
   styleUrls: ['./board-game.component.css'],
 })
-export class BoardGameComponent implements OnInit, AfterViewInit {
+export class BoardGameComponent implements OnInit, AfterViewInit, DoCheck {
   @ViewChild('card') card!: ElementRef;
   @ViewChild('boardGame') boardGame!: ElementRef;
 
@@ -126,12 +128,20 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
           'auto auto auto auto auto auto'
         );
       }
-
-
     }
-
-    console.log(window.matchMedia("(max-width: 360px").matches);
   }
+
+  ngDoCheck() {
+    if (this.loseGame) {
+      const getCards =
+        this.elementRef.nativeElement.getElementsByClassName('card');
+      for (let index = 0; index < getCards.length; index++) {
+        this.renderer.setStyle(getCards[index].children[0], 'backgroundColor', 'red');
+        this.renderer.setStyle(getCards[index].children[1], 'backgroundColor', 'red');
+      }
+    }
+  }
+
 
   getLoseGame(e: any) {
     this.loseGame = e;
@@ -215,6 +225,7 @@ export class BoardGameComponent implements OnInit, AfterViewInit {
     for (let index = 0; index < getCards.length; index++) {
       if (this.isMatched == this.newArrayLength) {
         this.renderer.setStyle(getCards[index], 'pointerEvents', 'none');
+        this.renderer.setStyle(getCards[index].children[1], 'backgroundColor', 'lawngreen');
       } else if (!getCards[index].classList.contains('match')) {
         this.renderer.setStyle(getCards[index], 'pointerEvents', 'auto');
       }

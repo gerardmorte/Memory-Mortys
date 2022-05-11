@@ -7,6 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { BoardGameComponent } from '../board-game/board-game.component';
 
 @Component({
   selector: 'app-info-game',
@@ -37,13 +38,10 @@ export class InfoGameComponent implements OnChanges {
         if (this.getIsMatched == this.getArrayLength) {
           this.seconds++;
           clearInterval(this.countDown);
-          document.getElementById('showTime')!.style.backgroundColor =
-            'lawngreen';
+          document.getElementById('showTime')!.style.backgroundColor = 'lawngreen';
           document.getElementById('showTime')!.style.textAlign = 'center';
-          document.getElementById('attempts')!.style.backgroundColor =
-            'lawngreen';
-          document.getElementById('matched')!.style.backgroundColor =
-            'lawngreen';
+          document.getElementById('attempts')!.style.backgroundColor = 'lawngreen';
+          document.getElementById('matched')!.style.backgroundColor = 'lawngreen';
           this.showSeconds = 'WINNER!';
         } else if (this.seconds == -1) {
           this.seconds++;
