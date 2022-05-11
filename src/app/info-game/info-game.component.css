@@ -17,33 +17,47 @@
 p{
   font-family: 'rmfont';
   padding: 10px;
-  font-size: 1em;
+  font-size: 2em;
   /* border: 2px solid white;
   border-radius: 10px;
   background-color: yellow;
   color: black; */
-  margin: 2px;
+  /* margin: 2px;
   color: black;
   background-color: #00B2C8;
   border: 3px solid black;
   border-radius: 25px;
-  box-shadow: 0 0 2.5px #00FF33,0 0 2.5px #00FF33, 0 0 5px #04F466, 0 0 5px #04F466, 0 0 5px #04F466;
+  box-shadow: 0 0 2.5px #00FF33,0 0 2.5px #00FF33, 0 0 5px #04F466, 0 0 5px #04F466, 0 0 5px #04F466; */
+  margin: 20px;
+
+  color: black;
+  background-color: #00B2C8;
+  border: 3px solid black;
+  border-radius: 25px;
+  box-shadow: 0 0 10px #00FF33,0 0 10px #00FF33, 0 0 20px #04F466, 0 0 20px #04F466, 0 0 20px #04F466;
+  cursor: pointer;
 }
 
 #attempts{
   /* width: max-content; */
   text-align: left;
-  width: 120px;
+  /* width: 120px;  */
+  width: 200px;
+  height: auto;
 }
 
 #matched{
   text-align: left;
-  width: 120px;
+  /* width: 120px; */
+  width: 200px;
+  height: auto;
 }
 
 #showTime{
   text-align: left;
-  width: 110px;
+  /* width: 110px; */
+  width: 200px;
+  height: auto;
 }
 
 @media screen and (max-width: 360px) {
