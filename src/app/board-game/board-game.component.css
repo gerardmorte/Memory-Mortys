@@ -12,7 +12,7 @@
 
 #board-game {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  /* grid-template-columns: auto auto auto auto; */
   align-items: center;
   justify-content: center;
   align-items: center;
@@ -65,9 +65,9 @@ img {
   transform: perspective(500px) rotateY(360deg);
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 450px) and (orientation: portrait) {
   #container {
-    margin-top: 0px;
+    margin-top: 30px;
   }
 
   .card {
@@ -80,7 +80,7 @@ img {
   }
 
   #bar-info {
-    margin-bottom: 13px;
+    margin-bottom: 40px;
   }
 
   #btn-back {
@@ -88,3 +88,54 @@ img {
     width: 120px;
   }
 }
+
+ @media screen and (max-width: 950px) and (orientation: landscape) {
+  #container {
+    margin-top: 15px;
+  }
+
+  #bar-info {
+    margin-bottom: 30px;
+  }
+
+  .card {
+    width: 62px;
+    height: 62px;
+  }
+
+  img {
+    height: 60px;
+  }
+}
+
+/* @media screen and (max-width: 900px) and (orientation: portrait) {
+#container {
+    margin-top: 30px;
+  }
+
+  #bar-info {
+    margin-bottom: 30px;
+  }
+
+  .card {
+    width: 120px;
+    height: 120px;
+  }
+
+  img {
+    height: 110px;
+  }
+}
+
+@media screen and (max-width: 1100px) and (orientation: landscape) {
+
+ .card {
+    width: 120px;
+    height: 120px;
+  }
+
+  img {
+    height: 110px;
+  }
+
+} */

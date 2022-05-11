@@ -16,11 +16,20 @@ button {
   background-color: #00B2C8;
   border: 3px solid black;
   border-radius: 25px;
-  box-shadow: 0 0 10px #00FF33,0 0 10px #00FF33, 0 0 20px #04F466, 0 0 20px #04F466, 0 0 20px #04F466;
+  box-shadow: 0 0 10px #00FF33, 0 0 10px #00FF33, 0 0 20px #04F466, 0 0 20px #04F466, 0 0 20px #04F466;
   cursor: pointer;
 }
 
-#btn-3{
-    margin-bottom: 50px;
+#btn-3 {
+  margin-bottom: 50px;
 }
 
+@media screen and (max-width: 950px) and (orientation: landscape) {
+  #chooseLevel {
+    display: block;
+  }
+
+  button {
+    margin: 20px;
+  }
+}

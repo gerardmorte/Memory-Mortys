@@ -53,7 +53,7 @@
 }
 
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 450px) and (orientation: portrait) {
 
   #info-game {
     flex-direction: column;
@@ -72,3 +72,25 @@
   }
 
 }
+ @media screen and (max-width: 950px) and (orientation: landscape) {
+
+  #showTime,
+  #attempts,
+  #matched,
+  #btn-back {
+    width: 120px;
+    font-size: 1em;
+  }
+
+} 
+
+/* @media screen and (max-width: 900px) and (orientation: portrait) {
+  #info-game {
+    flex-direction: column;
+  }
+
+  #info-time {
+    flex-direction: column;
+  }
+
+}  */
