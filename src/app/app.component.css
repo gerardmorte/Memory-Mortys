@@ -3,10 +3,6 @@
     padding: 0px;
 }
 
-/* #container {
-    margin-top: 100px;
-} */
-
 #title {
     width: 800px;
     height: auto;
@@ -56,7 +52,6 @@
         margin-top: 0px;
     }
 }
-
 
 @font-face {
     font-family: "rmfont";

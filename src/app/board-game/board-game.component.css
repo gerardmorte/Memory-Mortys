@@ -1,18 +1,15 @@
 #container {
   margin-top: 30px;
-  /* margin-top: 10px; */
 }
 
 #bar-info {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
-  /* margin-bottom: 10px; */
 }
 
 #board-game {
   display: grid;
-  /* grid-template-columns: auto auto auto auto; */
   align-items: center;
   justify-content: center;
   align-items: center;
@@ -23,8 +20,6 @@
   position: relative;
   width: 140px;
   height: 140px;
-  /* width: 85px;
-  height: 85px; */
   border: 1px solid #00ff33;
   box-shadow: 0 0 2.5px #00ff33, 0 0 2.5px #00ff33, 0 0 5px #04f466,
     0 0 5px #04f466, 0 0 5px #04f466;
@@ -44,7 +39,6 @@
 img {
   width: auto;
   height: 130px;
-  /* height: 80px; */
 }
 
 .card .front {
@@ -63,6 +57,19 @@ img {
 
 .card .rotateBack {
   transform: perspective(500px) rotateY(360deg);
+}
+
+@media screen and (max-width: 1400px) {
+ 
+  .card {
+    width: 85px;
+    height: 85px;
+  }
+
+  img {
+    height: 80px;
+  }
+
 }
 
 @media screen and (max-width: 450px) and (orientation: portrait) {
