@@ -91,11 +91,11 @@ img {
 
  @media screen and (max-width: 950px) and (orientation: landscape) {
   #container {
-    margin-top: 15px;
+    margin-top: 5px;
   }
 
   #bar-info {
-    margin-bottom: 30px;
+    margin-bottom: 5px;
   }
 
   .card {

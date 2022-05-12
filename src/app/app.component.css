@@ -26,19 +26,16 @@
 
 @media screen and (max-width: 450px) {
 
-    /* #container {
-        margin-top: 0px;
-    } */
-
     #title img {
         width: 340px;
+        margin-bottom: -20px;
     }
 
     #title {
         width: 360px;
         height: auto;
         flex-direction: column;
-        margin-top: 40px;
+        margin-top: 10px;
     }
 
     #title1 {
@@ -50,6 +47,16 @@
     }
 }
 
+@media screen and (max-width: 950px) and (orientation: landscape) {
+    #title img{
+        width: 300px;
+    }
+
+    #title{
+        margin-top: 0px;
+    }
+}
+
 
 @font-face {
     font-family: "rmfont";
@@ -57,4 +64,3 @@
     font-weight: normal;
     font-size: normal;
 }
-
