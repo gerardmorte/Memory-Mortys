@@ -8,7 +8,6 @@ import {
   EventEmitter,
   Renderer2,
   AfterViewInit,
-  OnChanges,
   DoCheck,
 } from '@angular/core';
 
@@ -35,29 +34,31 @@ export class BoardGameComponent implements OnInit, AfterViewInit, DoCheck {
   newArray: any = [];
   newArrayLength: number = 0;
   loseGame: boolean = false;
+  setGridColumns: string = '';
+  setGridRows: string = '';
 
   imgArray = [
-    { imagen: 'assets/img/morty1.png', pos: '1', id: '1' },
-    { imagen: 'assets/img/morty2.png', pos: '2', id: '2' },
-    { imagen: 'assets/img/morty3.png', pos: '3', id: '3' },
-    { imagen: 'assets/img/morty4.png', pos: '4', id: '4' },
-    { imagen: 'assets/img/morty5.png', pos: '5', id: '5' },
-    { imagen: 'assets/img/morty6.png', pos: '6', id: '6' },
-    { imagen: 'assets/img/morty7.png', pos: '7', id: '7' },
-    { imagen: 'assets/img/morty8.png', pos: '8', id: '8' },
-    { imagen: 'assets/img/morty9.png', pos: '9', id: '9' },
-    { imagen: 'assets/img/morty10.png', pos: '10', id: '10' },
-    { imagen: 'assets/img/morty11.png', pos: '11', id: '11' },
-    { imagen: 'assets/img/morty12.png', pos: '12', id: '12' },
-    { imagen: 'assets/img/morty13.png', pos: '13', id: '13' },
-    { imagen: 'assets/img/morty14.png', pos: '14', id: '14' },
-    { imagen: 'assets/img/morty15.png', pos: '15', id: '15' },
-    { imagen: 'assets/img/morty16.png', pos: '16', id: '16' },
-    { imagen: 'assets/img/morty17.png', pos: '17', id: '17' },
-    { imagen: 'assets/img/morty18.png', pos: '18', id: '18' },
-    { imagen: 'assets/img/morty19.png', pos: '19', id: '19' },
-    { imagen: 'assets/img/morty20.png', pos: '20', id: '20' },
-    { imagen: 'assets/img/morty21.png', pos: '21', id: '21' },
+    { imagen: 'assets/img/morty1.png', id: '1' },
+    { imagen: 'assets/img/morty2.png', id: '2' },
+    { imagen: 'assets/img/morty3.png', id: '3' },
+    { imagen: 'assets/img/morty4.png', id: '4' },
+    { imagen: 'assets/img/morty5.png', id: '5' },
+    { imagen: 'assets/img/morty6.png', id: '6' },
+    { imagen: 'assets/img/morty7.png', id: '7' },
+    { imagen: 'assets/img/morty8.png', id: '8' },
+    { imagen: 'assets/img/morty9.png', id: '9' },
+    { imagen: 'assets/img/morty10.png', id: '10' },
+    { imagen: 'assets/img/morty11.png', id: '11' },
+    { imagen: 'assets/img/morty12.png', id: '12' },
+    { imagen: 'assets/img/morty13.png', id: '13' },
+    { imagen: 'assets/img/morty14.png', id: '14' },
+    { imagen: 'assets/img/morty15.png', id: '15' },
+    { imagen: 'assets/img/morty16.png', id: '16' },
+    { imagen: 'assets/img/morty17.png', id: '17' },
+    { imagen: 'assets/img/morty18.png', id: '18' },
+    { imagen: 'assets/img/morty19.png', id: '19' },
+    { imagen: 'assets/img/morty20.png', id: '20' },
+    { imagen: 'assets/img/morty21.png', id: '21' },
   ];
 
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
@@ -70,7 +71,6 @@ export class BoardGameComponent implements OnInit, AfterViewInit, DoCheck {
       this.newArray.push(arraySlice[index]);
       this.newArray.push({
         imagen: arraySlice[index].imagen,
-        pos: arraySlice[index].pos,
         id: String(Number(arraySlice[index].id) * 100),
       });
     }
@@ -80,62 +80,101 @@ export class BoardGameComponent implements OnInit, AfterViewInit, DoCheck {
   }
 
   ngAfterViewInit(): void {
+    // if (window.matchMedia('(max-width: 450px').matches == true) {
+    //   if (this.getChosenLevel == 8) {
+    //     this.setGridColumns('repeat(4, auto)');
+    //     this.setGridRows('repeat(4,auto)');
+    //   } else if (this.getChosenLevel == 12) {
+    //     this.setGridColumns('repeat(4,auto)');
+    //     this.setGridRows('repeat(6,auto)');
+    //   } else if (this.getChosenLevel == 15) {
+    //     this.setGridColumns('repeat(5,auto)');
+    //     this.setGridRows('repeat(6,auto)');
+    //   }
+    // } else if (
+    //   window.matchMedia('(max-width: 950px) and (orientation: landscape)')
+    //     .matches == true
+    // ) {
+    //   if (this.getChosenLevel == 8) {
+    //     this.setGridColumns('repeat(8, auto)');
+    //     this.setGridRows('repeat(2,auto)');
+    //   } else if (this.getChosenLevel == 12) {
+    //     this.setGridColumns('repeat(8, auto)');
+    //     this.setGridRows('repeat(3,auto)');
+    //   } else if (this.getChosenLevel == 15) {
+    //     this.setGridColumns('repeat(10, auto)');
+    //     this.setGridRows('repeat(3,auto)');
+    //   }
+    // } else {
+    //   if (this.getChosenLevel == 8) {
+    //     this.setGridColumns('repeat(4, auto)');
+    //     this.setGridRows('repeat(4,auto)');
+    //   } else if (this.getChosenLevel == 12) {
+    //     this.setGridColumns('repeat(6, auto)');
+    //     this.setGridRows('repeat(4,auto)');
+    //   } else if (this.getChosenLevel == 15) {
+    //     this.setGridColumns('repeat(6, auto)');
+    //     this.setGridRows('repeat(5,auto)');
+    //   }
+    // }
+  }
+
+  ngDoCheck() {
+    ///PRUEBA NGIF////
     if (window.matchMedia('(max-width: 450px').matches == true) {
       if (this.getChosenLevel == 8) {
-        this.setGridColumns('repeat(4, auto)');
-        this.setGridRows('repeat(4,auto)');
+        this.setGridColumns = 'repeat(4,auto)';
+        this.setGridRows = 'repeat(4,auto)';
       } else if (this.getChosenLevel == 12) {
-        this.setGridColumns('repeat(4,auto)');
-        this.setGridRows('repeat(6,auto)');
+        this.setGridColumns = 'repeat(4,auto)';
+        this.setGridRows = 'repeat(6,auto)';
       } else if (this.getChosenLevel == 15) {
-        this.setGridColumns('repeat(5,auto)');
-        this.setGridRows('repeat(6,auto)');
+        this.setGridColumns = 'repeat(5,auto)';
+        this.setGridRows = 'repeat(6,auto)';
       }
     } else if (
       window.matchMedia('(max-width: 950px) and (orientation: landscape)')
         .matches == true
     ) {
       if (this.getChosenLevel == 8) {
-        this.setGridColumns('repeat(8, auto)');
-        this.setGridRows('repeat(2,auto)');
+        this.setGridColumns = 'repeat(8,auto)';
+        this.setGridRows = 'repeat(2,auto)';
       } else if (this.getChosenLevel == 12) {
-        this.setGridColumns('repeat(8, auto)');
-        this.setGridRows('repeat(3,auto)');
+        this.setGridColumns = 'repeat(8,auto)';
+        this.setGridRows = 'repeat(3,auto)';
       } else if (this.getChosenLevel == 15) {
-        this.setGridColumns('repeat(10, auto)');
-        this.setGridRows('repeat(3,auto)');
+        this.setGridColumns = 'repeat(10,auto)';
+        this.setGridRows = 'repeat(3,auto)';
       }
     } else {
       if (this.getChosenLevel == 8) {
-        this.setGridColumns('repeat(4, auto)');
-        this.setGridRows('repeat(4,auto)');
+        this.setGridColumns = 'repeat(4,auto)';
+        this.setGridRows = 'repeat(4,auto)';
       } else if (this.getChosenLevel == 12) {
-        this.setGridColumns('repeat(6, auto)');
-        this.setGridRows('repeat(4,auto)');
+        this.setGridColumns = 'repeat(6,auto)';
+        this.setGridRows = 'repeat(4,auto)';
       } else if (this.getChosenLevel == 15) {
-        this.setGridColumns('repeat(6, auto)');
-        this.setGridRows('repeat(5,auto)');
+        this.setGridColumns = 'repeat(6,auto)';
+        this.setGridRows = 'repeat(5,auto)';
       }
     }
-  }
-
-  ngDoCheck() {
-    if (this.loseGame) {
-      const getCards =
-        this.elementRef.nativeElement.getElementsByClassName('card');
-      for (let index = 0; index < getCards.length; index++) {
-        this.renderer.setStyle(
-          getCards[index].children[0],
-          'backgroundColor',
-          'red'
-        );
-        this.renderer.setStyle(
-          getCards[index].children[1],
-          'backgroundColor',
-          'red'
-        );
-      }
-    }
+    ///
+    // if (this.loseGame) {
+    //   const getCards =
+    //     this.elementRef.nativeElement.getElementsByClassName('card');
+    //   for (let index = 0; index < getCards.length; index++) {
+    //     this.renderer.setStyle(
+    //       getCards[index].children[0],
+    //       'backgroundColor',
+    //       'red'
+    //     );
+    //     this.renderer.setStyle(
+    //       getCards[index].children[1],
+    //       'backgroundColor',
+    //       'red'
+    //     );
+    //   }
+    // }
   }
 
   getLoseGame(e: any) {
@@ -231,19 +270,19 @@ export class BoardGameComponent implements OnInit, AfterViewInit, DoCheck {
     }
   }
 
-  setGridColumns(columns: string) {
-    this.renderer.setStyle(
-      this.boardGame.nativeElement,
-      'gridTemplateColumns',
-      columns
-    );
-  }
+  // setGridColumns(columns: string) {
+  //   this.renderer.setStyle(
+  //     this.boardGame.nativeElement,
+  //     'gridTemplateColumns',
+  //     columns
+  //   );
+  // }
 
-  setGridRows(rows: string) {
-    this.renderer.setStyle(
-      this.boardGame.nativeElement,
-      'gridTemplateRows',
-      rows
-    );
-  }
+  // setGridRows(rows: string) {
+  //   this.renderer.setStyle(
+  //     this.boardGame.nativeElement,
+  //     'gridTemplateRows',
+  //     rows
+  //   );
+  // }
 }
