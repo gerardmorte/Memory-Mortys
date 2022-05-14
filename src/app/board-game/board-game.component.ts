@@ -60,7 +60,7 @@ export class BoardGameComponent implements OnInit, AfterViewInit, DoCheck {
     { imagen: 'assets/img/morty21.png', pos: '21', id: '21' },
   ];
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit(): void {
     this.fisherYatesShuffle(this.imgArray);
@@ -80,111 +80,41 @@ export class BoardGameComponent implements OnInit, AfterViewInit, DoCheck {
   }
 
   ngAfterViewInit(): void {
-
-    if (window.matchMedia("(max-width: 450px").matches == true) {
+    if (window.matchMedia('(max-width: 450px').matches == true) {
       if (this.getChosenLevel == 8) {
-        this.renderer.setStyle(
-          this.boardGame.nativeElement,
-          'gridTemplateColumns',
-          'repeat(4, auto)'
-        );
-        this.renderer.setStyle(
-          this.boardGame.nativeElement,
-          'gridTemplateRows',
-          'repeat(4,auto)'
-        );
+        this.setGridColumns('repeat(4, auto)');
+        this.setGridRows('repeat(4,auto)');
       } else if (this.getChosenLevel == 12) {
-        this.renderer.setStyle(
-          this.boardGame.nativeElement,
-          'gridTemplateColumns',
-          'repeat(4, auto)'
-        );
-        this.renderer.setStyle(
-          this.boardGame.nativeElement,
-          'gridTemplateRows',
-          'repeat(6,auto)'
-        );
+        this.setGridColumns('repeat(4,auto)');
+        this.setGridRows('repeat(6,auto)');
       } else if (this.getChosenLevel == 15) {
-        this.renderer.setStyle(
-          this.boardGame.nativeElement,
-          'gridTemplateColumns',
-          'repeat(5, auto)'
-        );
-        this.renderer.setStyle(
-          this.boardGame.nativeElement,
-          'gridTemplateRows',
-          'repeat(6, auto)'
-        );
+        this.setGridColumns('repeat(5,auto)');
+        this.setGridRows('repeat(6,auto)');
       }
-    } else if (window.matchMedia("(max-width: 950px) and (orientation: landscape)").matches == true) {
+    } else if (
+      window.matchMedia('(max-width: 950px) and (orientation: landscape)')
+        .matches == true
+    ) {
       if (this.getChosenLevel == 8) {
-        this.renderer.setStyle(
-          this.boardGame.nativeElement,
-          'gridTemplateColumns',
-          'repeat(8, auto)'
-        );
-        this.renderer.setStyle(
-          this.boardGame.nativeElement,
-          'gridTemplateRows',
-          'repeat(2,auto)'
-        );
+        this.setGridColumns('repeat(8, auto)');
+        this.setGridRows('repeat(2,auto)');
       } else if (this.getChosenLevel == 12) {
-        this.renderer.setStyle(
-          this.boardGame.nativeElement,
-          'gridTemplateColumns',
-          'repeat(8, auto)'
-        );
-        this.renderer.setStyle(
-          this.boardGame.nativeElement,
-          'gridTemplateRows',
-          'repeat(3,auto)'
-        );
+        this.setGridColumns('repeat(8, auto)');
+        this.setGridRows('repeat(3,auto)');
       } else if (this.getChosenLevel == 15) {
-        this.renderer.setStyle(
-          this.boardGame.nativeElement,
-          'gridTemplateColumns',
-          'repeat(10, auto)'
-        );
-        this.renderer.setStyle(
-          this.boardGame.nativeElement,
-          'gridTemplateRows',
-          'repeat(3, auto)'
-        );
+        this.setGridColumns('repeat(10, auto)');
+        this.setGridRows('repeat(3,auto)');
       }
     } else {
       if (this.getChosenLevel == 8) {
-        this.renderer.setStyle(
-          this.boardGame.nativeElement,
-          'gridTemplateColumns',
-          'repeat(4, auto)'
-        );
-        this.renderer.setStyle(
-          this.boardGame.nativeElement,
-          'gridTemplateRows',
-          'repeat(4,auto)'
-        );
+        this.setGridColumns('repeat(4, auto)');
+        this.setGridRows('repeat(4,auto)');
       } else if (this.getChosenLevel == 12) {
-        this.renderer.setStyle(
-          this.boardGame.nativeElement,
-          'gridTemplateColumns',
-          'auto auto auto auto auto auto'
-        );
-        this.renderer.setStyle(
-          this.boardGame.nativeElement,
-          'gridTemplateRows',
-          'auto auto auto auto'
-        );
+        this.setGridColumns('repeat(6, auto)');
+        this.setGridRows('repeat(4,auto)');
       } else if (this.getChosenLevel == 15) {
-        this.renderer.setStyle(
-          this.boardGame.nativeElement,
-          'gridTemplateColumns',
-          'auto auto auto auto auto auto'
-        );
-        this.renderer.setStyle(
-          this.boardGame.nativeElement,
-          'gridTemplateRows',
-          'auto auto auto auto auto'
-        );
+        this.setGridColumns('repeat(6, auto)');
+        this.setGridRows('repeat(5,auto)');
       }
     }
   }
@@ -194,12 +124,19 @@ export class BoardGameComponent implements OnInit, AfterViewInit, DoCheck {
       const getCards =
         this.elementRef.nativeElement.getElementsByClassName('card');
       for (let index = 0; index < getCards.length; index++) {
-        this.renderer.setStyle(getCards[index].children[0], 'backgroundColor', 'red');
-        this.renderer.setStyle(getCards[index].children[1], 'backgroundColor', 'red');
+        this.renderer.setStyle(
+          getCards[index].children[0],
+          'backgroundColor',
+          'red'
+        );
+        this.renderer.setStyle(
+          getCards[index].children[1],
+          'backgroundColor',
+          'red'
+        );
       }
     }
   }
-
 
   getLoseGame(e: any) {
     this.loseGame = e;
@@ -283,10 +220,30 @@ export class BoardGameComponent implements OnInit, AfterViewInit, DoCheck {
     for (let index = 0; index < getCards.length; index++) {
       if (this.isMatched == this.newArrayLength) {
         this.renderer.setStyle(getCards[index], 'pointerEvents', 'none');
-        this.renderer.setStyle(getCards[index].children[1], 'backgroundColor', 'lawngreen');
+        this.renderer.setStyle(
+          getCards[index].children[1],
+          'backgroundColor',
+          'lawngreen'
+        );
       } else if (!getCards[index].classList.contains('match')) {
         this.renderer.setStyle(getCards[index], 'pointerEvents', 'auto');
       }
     }
+  }
+
+  setGridColumns(columns: string) {
+    this.renderer.setStyle(
+      this.boardGame.nativeElement,
+      'gridTemplateColumns',
+      columns
+    );
+  }
+
+  setGridRows(rows: string) {
+    this.renderer.setStyle(
+      this.boardGame.nativeElement,
+      'gridTemplateRows',
+      rows
+    );
   }
 }
