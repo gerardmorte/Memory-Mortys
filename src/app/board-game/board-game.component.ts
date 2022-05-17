@@ -16,7 +16,7 @@ import {
   templateUrl: './board-game.component.html',
   styleUrls: ['./board-game.component.css'],
 })
-export class BoardGameComponent implements OnInit, AfterViewInit, DoCheck {
+export class BoardGameComponent implements OnInit, DoCheck {
   @ViewChild('card') card!: ElementRef;
   @ViewChild('boardGame') boardGame!: ElementRef;
 
@@ -61,7 +61,7 @@ export class BoardGameComponent implements OnInit, AfterViewInit, DoCheck {
     { imagen: 'assets/img/morty21.png', id: '21' },
   ];
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit(): void {
     this.fisherYatesShuffle(this.imgArray);
@@ -79,48 +79,7 @@ export class BoardGameComponent implements OnInit, AfterViewInit, DoCheck {
     this.fisherYatesShuffle(this.newArray);
   }
 
-  ngAfterViewInit(): void {
-    // if (window.matchMedia('(max-width: 450px').matches == true) {
-    //   if (this.getChosenLevel == 8) {
-    //     this.setGridColumns('repeat(4, auto)');
-    //     this.setGridRows('repeat(4,auto)');
-    //   } else if (this.getChosenLevel == 12) {
-    //     this.setGridColumns('repeat(4,auto)');
-    //     this.setGridRows('repeat(6,auto)');
-    //   } else if (this.getChosenLevel == 15) {
-    //     this.setGridColumns('repeat(5,auto)');
-    //     this.setGridRows('repeat(6,auto)');
-    //   }
-    // } else if (
-    //   window.matchMedia('(max-width: 950px) and (orientation: landscape)')
-    //     .matches == true
-    // ) {
-    //   if (this.getChosenLevel == 8) {
-    //     this.setGridColumns('repeat(8, auto)');
-    //     this.setGridRows('repeat(2,auto)');
-    //   } else if (this.getChosenLevel == 12) {
-    //     this.setGridColumns('repeat(8, auto)');
-    //     this.setGridRows('repeat(3,auto)');
-    //   } else if (this.getChosenLevel == 15) {
-    //     this.setGridColumns('repeat(10, auto)');
-    //     this.setGridRows('repeat(3,auto)');
-    //   }
-    // } else {
-    //   if (this.getChosenLevel == 8) {
-    //     this.setGridColumns('repeat(4, auto)');
-    //     this.setGridRows('repeat(4,auto)');
-    //   } else if (this.getChosenLevel == 12) {
-    //     this.setGridColumns('repeat(6, auto)');
-    //     this.setGridRows('repeat(4,auto)');
-    //   } else if (this.getChosenLevel == 15) {
-    //     this.setGridColumns('repeat(6, auto)');
-    //     this.setGridRows('repeat(5,auto)');
-    //   }
-    // }
-  }
-
   ngDoCheck() {
-    ///PRUEBA NGIF////
     if (window.matchMedia('(max-width: 450px').matches == true) {
       if (this.getChosenLevel == 8) {
         this.setGridColumns = 'repeat(4,auto)';
@@ -158,23 +117,6 @@ export class BoardGameComponent implements OnInit, AfterViewInit, DoCheck {
         this.setGridRows = 'repeat(5,auto)';
       }
     }
-    ///
-    // if (this.loseGame) {
-    //   const getCards =
-    //     this.elementRef.nativeElement.getElementsByClassName('card');
-    //   for (let index = 0; index < getCards.length; index++) {
-    //     this.renderer.setStyle(
-    //       getCards[index].children[0],
-    //       'backgroundColor',
-    //       'red'
-    //     );
-    //     this.renderer.setStyle(
-    //       getCards[index].children[1],
-    //       'backgroundColor',
-    //       'red'
-    //     );
-    //   }
-    // }
   }
 
   getLoseGame(e: any) {
@@ -269,20 +211,4 @@ export class BoardGameComponent implements OnInit, AfterViewInit, DoCheck {
       }
     }
   }
-
-  // setGridColumns(columns: string) {
-  //   this.renderer.setStyle(
-  //     this.boardGame.nativeElement,
-  //     'gridTemplateColumns',
-  //     columns
-  //   );
-  // }
-
-  // setGridRows(rows: string) {
-  //   this.renderer.setStyle(
-  //     this.boardGame.nativeElement,
-  //     'gridTemplateRows',
-  //     rows
-  //   );
-  // }
 }

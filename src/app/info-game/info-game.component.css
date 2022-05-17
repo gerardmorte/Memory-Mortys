@@ -72,7 +72,8 @@
   }
 
 }
- @media screen and (max-width: 950px) and (orientation: landscape) {
+
+@media screen and (max-width: 950px) and (orientation: landscape) {
 
   #showTime,
   #attempts,
@@ -82,9 +83,9 @@
     font-size: 1em;
   }
 
-} 
+}
 
-/* @media screen and (max-width: 900px) and (orientation: portrait) {
+ @media screen and (max-width: 900px) and (orientation: portrait) {
   #info-game {
     flex-direction: column;
   }
@@ -93,4 +94,4 @@
     flex-direction: column;
   }
 
-}  */
+}  

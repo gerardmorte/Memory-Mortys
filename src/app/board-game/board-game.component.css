@@ -60,7 +60,6 @@ img {
 }
 
 @media screen and (max-width: 1400px) {
- 
   .card {
     width: 85px;
     height: 85px;
@@ -70,14 +69,13 @@ img {
     height: 80px;
   }
 
-  #container{
+  #container {
     margin-top: 15px;
   }
 
-  #bar-info{
+  #bar-info {
     margin-bottom: 15px;
   }
-
 }
 
 @media screen and (max-width: 450px) and (orientation: portrait) {
@@ -104,7 +102,7 @@ img {
   }
 }
 
- @media screen and (max-width: 950px) and (orientation: landscape) {
+@media screen and (max-width: 950px) and (orientation: landscape) {
   #container {
     margin-top: 5px;
   }
@@ -122,35 +120,3 @@ img {
     height: 60px;
   }
 }
-
-/* @media screen and (max-width: 900px) and (orientation: portrait) {
-#container {
-    margin-top: 30px;
-  }
-
-  #bar-info {
-    margin-bottom: 30px;
-  }
-
-  .card {
-    width: 120px;
-    height: 120px;
-  }
-
-  img {
-    height: 110px;
-  }
-}
-
-@media screen and (max-width: 1100px) and (orientation: landscape) {
-
- .card {
-    width: 120px;
-    height: 120px;
-  }
-
-  img {
-    height: 110px;
-  }
-
-} */
