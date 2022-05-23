@@ -156,7 +156,7 @@ export class BoardGameComponent implements OnInit, DoCheck {
         }
         setTimeout(() => {
           this.checkMatch();
-        }, 1000);
+        }, 900);
       } else {
         this.flipCardCount = 0;
       }

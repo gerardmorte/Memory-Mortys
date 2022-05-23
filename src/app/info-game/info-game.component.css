@@ -36,6 +36,14 @@
   cursor: pointer;
 }
 
+#showTime{
+  width: 190px;
+}
+
+#matched{
+  width: 215px;
+}
+
 #btn-back {
   font-family: 'rmfont';
   text-align: center;
