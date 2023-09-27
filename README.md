@@ -1,7 +1,7 @@
 # Memory Morty
 
 ## Enlace:
-* 🧩 https://memorymorty.netlify.app/
+* 🧩 https://memorymortys.netlify.app/
 
 ## Tecnologías usadas:
 * ANGULAR
