@@ -1,2 +1,2 @@
-# Memory Morty
-🧩 https://memorymortys.netlify.app/
+# Memory Mortys 🧩
+https://memorymortys.netlify.app/
